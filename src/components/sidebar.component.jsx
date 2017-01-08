@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Sidebar extends Component {
     render() {
         return(
-            <div className="sidebar medium-3 columns end">
+            <div className="sidebar small-3 columns end">
                 <ul className="vertical menu" data-accordion-menu>
                   <li>
                     <a href="#">Item 1</a>

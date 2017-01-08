@@ -1,7 +1,14 @@
 .header{
+    position: relative;
+    z-index: 999;
+
     .top-bar{
         background: $primary;
         position: relative;
+
+        @media(max-width: $screen-sm-max){
+            padding: 0 5px;
+        }
 
         a{
             color: $light;
@@ -11,6 +18,11 @@
             font-size: 2em;
             font-weight: normal;
             padding-left: 0;
+
+            @media(max-width: $screen-sm-max){
+                float: left;
+                width: 75%;
+            }
 
             span.tom{
                 font-weight: bold;
@@ -28,9 +40,19 @@
             }
         }
 
+        .menu-toggle{
+            color: $light;
+            font-size: 1.75em;
+            float: left;
+            padding-right: 20px;
+            padding-top: 28px;
+            text-align: right;
+            width: 25%;
+        }
+
         // carets in dropdown
         .dropdown.menu>li.is-dropdown-submenu-parent>a:after {
-            border-color: $accent transparent transparent;
+            border-color: $secondary transparent transparent;
             margin-top: -1px;
         }
 

@@ -1,3 +1,22 @@
 .sidebar{
     background: $light;
+    height: calc(100% - 80px);
+    min-width: 260px;
+    overflow: scroll;
+    position: fixed;
+    transition: .5s all ease;
+
+    @media(max-width: $screen-sm-max){
+        box-shadow: 2px 0 15px #999;
+        transform: translateX(-125%);
+
+        &.open{
+            transform: translateX(0);
+            transition: .5s all ease;
+        }
+    }
+
+    @media(min-width: $screen-md-min){
+        border-right: 1px solid #ddd;
+    }
 }

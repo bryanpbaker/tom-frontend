@@ -11,7 +11,7 @@ import '../style/main.scss';
 const App = (props) => {
 
     return(
-        <div className="app row">
+        <div className="page-wrapper row">
             <Header/>
             <Sidebar/>
             {props.children}
