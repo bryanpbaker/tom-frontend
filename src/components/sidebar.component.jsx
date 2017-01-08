@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 
 export default class Sidebar extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            menuOpen: false
+        }
+    }
+
     render() {
         return(
-            <div className="sidebar small-3 columns end">
+            <div className={"sidebar small-3 columns end " + (this.state.menuOpen ? 'open' : '')}>
                 <ul className="vertical menu" data-accordion-menu>
                   <li>
                     <a href="#">Item 1</a>
