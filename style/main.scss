@@ -1,8 +1,10 @@
 // Custom Globals
 @import 'scss/custom-globals/scaffolding';
+@import 'scss/custom-globals/variables';
 
 // Layout
 @import 'scss/layout/header';
+@import 'scss/layout/sidebar';
 
 // Components
 @import 'scss/components/test-component';

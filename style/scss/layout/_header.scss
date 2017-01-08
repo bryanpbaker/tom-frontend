@@ -1,1 +1,57 @@
+.header{
+    .top-bar{
+        background: $primary;
+        position: relative;
 
+        a{
+            color: $light;
+        }
+
+        .logo{
+            font-size: 2em;
+            font-weight: normal;
+            padding-left: 0;
+
+            span.tom{
+                font-weight: bold;
+                margin-right: -2px;
+            }
+            span.app{
+                position: relative;
+                top: 4px;
+            }
+
+            &:hover{
+                i.fa{
+                    color: yellow;
+                }
+            }
+        }
+
+        // carets in dropdown
+        .dropdown.menu>li.is-dropdown-submenu-parent>a:after {
+            border-color: $accent transparent transparent;
+            margin-top: -1px;
+        }
+
+        ul.dropdown{
+            background-color: transparent;
+
+            li:not(.logo){
+                padding-top: 10px;
+            }
+
+            .submenu{
+                background: $secondary;
+                left: 10px !important;
+                top: 85% !important;
+            }
+        }
+
+        .logout{
+            display: inline-block;
+            padding-right: 5px;
+            padding-top: 30px;
+        }
+    }
+}
