@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, Link, browserHistory, IndexRoute} from 'react-router';
 
@@ -8,21 +8,32 @@ import Test from './components/test.component';
 
 import '../style/main.scss';
 
-const App = (props) => {
+class App extends Component {
+    constructor(props) {
+        super(props);
 
-    return(
-        <div className="page-wrapper row">
-            <Header/>
-            <Sidebar/>
-            {props.children}
-        </div>
-    )
+        this.state = {
+            menuOpen: false
+        };
+
+        this.toggleMenu = () => {
+            this.setState({ menuOpen: !this.state.menuOpen })
+        }
+    }
+
+    render() {
+        return(
+            <div className="page-wrapper row">
+                <Header toggleMenu={this.toggleMenu} />
+                <Sidebar menuOpen={this.state.menuOpen} />
+            </div>
+        )
+    }
 }
 
 ReactDOM.render(
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <Route path="test" component={Test}></Route>
         </Route>
     </Router>
 , document.getElementById('app'));
