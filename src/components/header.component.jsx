@@ -9,8 +9,8 @@ const Header = (props) => {
                 <div className="top-bar-left">
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li className="menu-text logo"><Link to=""><i className="fa fa-lightbulb-o"></i><span className="tom">Tom</span><span className="app">App</span></Link></li>
-                        <a href="#">
-                            <i className="fa fa-bars show-for-small-only menu-toggle" onClick={props.toggleMenu}></i>
+                        <a href="#" className="show-for-small-only ">
+                            <i className="fa fa-bars menu-toggle" onClick={props.toggleMenu}></i>
                         </a>
                         <li className="hide-for-small-only">
                             <a href="#">One</a>
