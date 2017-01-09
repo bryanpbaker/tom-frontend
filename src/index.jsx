@@ -12,10 +12,12 @@ class App extends Component {
     constructor(props) {
         super(props);
 
+        // pass menuOpen state to Sidebar component
         this.state = {
             menuOpen: false
         };
 
+        // receive toggleMenu call from Header component
         this.toggleMenu = () => {
             this.setState({ menuOpen: !this.state.menuOpen })
         }
@@ -33,7 +35,6 @@ class App extends Component {
 
 ReactDOM.render(
     <Router history={browserHistory}>
-        <Route path="/" component={App}>
-        </Route>
+        <Route path="/" component={App}></Route>
     </Router>
 , document.getElementById('app'));
