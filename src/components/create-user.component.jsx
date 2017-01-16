@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import fb from '../config/firebase.config';
+
+const auth = fb.auth();
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -15,8 +18,6 @@ export default class CreateUser extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-
-    console.log(firebase);
   }
 
   handleNameChange(event) {
