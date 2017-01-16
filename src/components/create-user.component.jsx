@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import fb from '../config/firebase.config';
-
-const auth = fb.auth();
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -32,8 +29,10 @@ export default class CreateUser extends Component {
     this.setState({ password: event.target.value });
   }
 
-  handleFormSubmit(event) {
-    event.preventDefault();
+  handleFormSubmit(email, password) {
+    const auth = fb.auth();
+
+    auth.createUserWithEmailAndPassword(email, password).then(res => console.log(res));
   }
 
   render() {
@@ -42,7 +41,14 @@ export default class CreateUser extends Component {
         <h1>Create Your Account</h1>
 
         <div className="create-account-form row">
-          <form className="medium-6 medium-offset-3 columns" onSubmit={this.handleFormSubmit}>
+          <form
+            className="medium-6 medium-offset-3 columns"
+            onSubmit={(event) => {
+                event.preventDefault();
+                this.handleFormSubmit(this.state.email, this.state.password);
+              }
+            }
+          >
             <div className="row">
               <label htmlFor="name">Name:
                 <input
@@ -73,7 +79,8 @@ export default class CreateUser extends Component {
             <div className="row">
               <button
                 type="submit"
-                className="button">
+                className="button"
+              >
                 Create User
               </button>
             </div>
