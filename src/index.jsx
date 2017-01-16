@@ -1,40 +1,37 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, Link, browserHistory, IndexRoute} from 'react-router';
-
-import Header from './components/header.component';
-import Sidebar from './components/sidebar.component';
-import Test from './components/test.component';
+import { Router, Route, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import firebase from 'firebase';
 
 import '../style/main.scss';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
+import App from './components/app.component';
+import LoginPage from './components/login-page.component';
+import CreateUser from './components/create-user.component';
 
-        // pass menuOpen state to Sidebar component
-        this.state = {
-            menuOpen: false
-        };
+import reducers from './reducers';
 
-        // receive toggleMenu call from Header component
-        this.toggleMenu = () => {
-            this.setState({ menuOpen: !this.state.menuOpen })
-        }
-    }
+const createStoreWithMiddleWare = applyMiddleware()(createStore);
 
-    render() {
-        return(
-            <div className="page-wrapper row">
-                <Header toggleMenu={this.toggleMenu} />
-                <Sidebar menuOpen={this.state.menuOpen} />
-            </div>
-        )
-    }
-}
+// Initialize Firebase
+const config = {
+  apiKey: 'AIzaSyBgnPDqwIOFS0kzBn_w9KuTtIR4d8Ul0As',
+  authDomain: 'tom-app-bddda.firebaseapp.com',
+  databaseURL: 'https://tom-app-bddda.firebaseio.com',
+  storageBucket: 'tom-app-bddda.appspot.com',
+  messagingSenderId: '213564303632'
+};
+
+firebase.initializeApp(config);
 
 ReactDOM.render(
-    <Router history={browserHistory}>
-        <Route path="/" component={App}></Route>
-    </Router>
+    <Provider store={createStoreWithMiddleWare(reducers)}>
+      <Router history={browserHistory}>
+          <Route path="/" component={App} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/sign-up" component={CreateUser} />
+      </Router>
+    </Provider>
 , document.getElementById('app'));
