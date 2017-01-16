@@ -12,6 +12,20 @@
     </head>
     <body>
         <div id="app"></div>
+        <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBgnPDqwIOFS0kzBn_w9KuTtIR4d8Ul0As",
+            authDomain: "tom-app-bddda.firebaseapp.com",
+            databaseURL: "https://tom-app-bddda.firebaseio.com",
+            storageBucket: "tom-app-bddda.appspot.com",
+            messagingSenderId: "213564303632"
+          };
+          firebase.initializeApp(config);
+        </script>
         <script src="dist/app.bundle.js"></script>
         <script src="dist/js/vendor/jquery.js" type="text/javascript"></script>
         <script src="dist/js/vendor/what-input.js" type="text/javascript"></script>
