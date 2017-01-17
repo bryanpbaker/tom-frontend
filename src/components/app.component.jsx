@@ -24,6 +24,7 @@ export default class App extends Component {
             <div className="page-wrapper row">
               <Header toggleMenu={this.toggleMenu} />
               <Sidebar menuOpen={this.state.menuOpen} />
+              { this.props.children }
             </div>
         );
     }
