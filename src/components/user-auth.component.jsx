@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import fb from '../config/firebase.config';
 
-export default class LoginPage extends Component {
+export default class UserAuth extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userEmail: 'user@email.com',
       userPassword: 'password'
-    }
+    };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.authenticateUser = this.authenticateUser.bind(this);
   }
 
@@ -21,7 +23,9 @@ export default class LoginPage extends Component {
   }
 
   authenticateUser(email, password) {
-    console.log(email, password);
+    const auth = fb.auth();
+
+    auth.signInWithEmailAndPassword(email, password).then(res => console.log(res));
   }
 
   render() {
@@ -30,7 +34,14 @@ export default class LoginPage extends Component {
         <h1>Tom App</h1>
 
         <div className="login-form row">
-          <form className="medium-6 medium-offset-3 columns">
+          <form
+            className="medium-6 medium-offset-3 columns"
+            onSubmit={(event) => {
+              event.preventDefault();
+              this.authenticateUser(this.state.userEmail, this.state.userPassword);
+            }
+          }
+          >
             <div className="row">
               <label htmlFor="email">Email:
                 <input
@@ -48,6 +59,9 @@ export default class LoginPage extends Component {
                   onChange={this.handlePasswordChange}
                 />
               </label>
+            </div>
+            <div className="row">
+              <button className="button">Sign In</button>
             </div>
           </form>
         </div>
