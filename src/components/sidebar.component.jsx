@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Sidebar = (props) =>  {
 
-    return(
-        <div className={"sidebar small-3 columns end " + (props.menuOpen ? 'open' : '')}>
+    return (
+        <div className={"sidebar small-2 medium-3 columns end " + (props.menuOpen ? 'open' : '')}>
             <ul className="vertical menu" data-accordion-menu>
               <li>
                 <a href="#">Item 1</a>

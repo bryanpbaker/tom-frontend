@@ -13,7 +13,8 @@ export default class App extends Component {
         };
 
         // receive toggleMenu call from Header component
-        this.toggleMenu = () => {
+        this.toggleMenu = (event) => {
+            event.preventDefault();
             this.setState({ menuOpen: !this.state.menuOpen });
         };
     }
@@ -21,8 +22,8 @@ export default class App extends Component {
     render() {
         return (
             <div className="page-wrapper row">
-              <Header />
-              <Sidebar />
+              <Header toggleMenu={this.toggleMenu} />
+              <Sidebar menuOpen={this.state.menuOpen} />
             </div>
         );
     }
