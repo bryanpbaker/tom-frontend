@@ -1,7 +1,17 @@
-// TODO: Implement action to set current user
-
 import fb from '../config/firebase.config';
 
-fb.auth().onAuthStateChanged((user) => {
-  console.log(user);
-});
+export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
+
+export function authenticateUser(email, password) {
+  const auth = fb.auth();
+
+  return (dispatch) => {
+    auth.signInWithEmailAndPassword(email, password)
+    .then((currentUser) => {
+      dispatch({
+        type: AUTHENTICATE_USER,
+        payload: currentUser
+      });
+    });
+  };
+}

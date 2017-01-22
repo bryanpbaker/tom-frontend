@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
-import fb from '../config/firebase.config';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
-export default class UserAuth extends Component {
+import fb from '../config/firebase.config';
+import { authenticateUser } from '../actions/index';
+
+class UserAuth extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userEmail: 'user@email.com',
-      userPassword: 'password'
+      userPassword: 'password',
+      error: ''
     };
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.authenticateUser = this.authenticateUser.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentUser.uid !== undefined) {
+      browserHistory.push('/');
+    }
   }
 
   handleEmailChange(event) {
@@ -23,9 +35,7 @@ export default class UserAuth extends Component {
   }
 
   authenticateUser(email, password) {
-    const auth = fb.auth();
-
-    auth.signInWithEmailAndPassword(email, password).then(res => console.log(res));
+    this.props.authenticateUser(email, password);
   }
 
   render() {
@@ -43,6 +53,7 @@ export default class UserAuth extends Component {
           }
           >
             <div className="row">
+              <span className="error">{this.state.error}</span>
               <label htmlFor="email">Email:
                 <input
                   type="email"
@@ -69,3 +80,15 @@ export default class UserAuth extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ authenticateUser }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserAuth);

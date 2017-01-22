@@ -19,17 +19,6 @@ const Header = (props) => {
                         </a>
                         <li className="hide-for-small-only">
                             <a href="">One</a>
-                            <ul className="menu vertical">
-                                <li>
-                                    <a href="">One</a>
-                                </li>
-                                <li>
-                                    <a href="">Two</a>
-                                </li>
-                                <li>
-                                    <a href="">Three</a>
-                                </li>
-                            </ul>
                         </li>
                         <li className="hide-for-small-only">
                             <a href="">Two</a>
