@@ -6,7 +6,7 @@ import Header from './header.component';
 import Sidebar from './sidebar.component';
 import Dashboard from './dashboard.component';
 
-import { getCurrentUser } from '../actions/index';
+import { getCurrentUser, signoutUser } from '../actions/index';
 
 class App extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class App extends Component {
   render() {
       return (
           <div className="page-wrapper row">
-            <Header toggleMenu={this.toggleMenu} />
+            <Header toggleMenu={this.toggleMenu} logout={this.props.signoutUser} />
             <Sidebar menuOpen={this.state.menuOpen} />
             <Dashboard currentUser={this.state.currentUser} />
           </div>
@@ -52,7 +52,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getCurrentUser }, dispatch);
+  return bindActionCreators({ getCurrentUser, signoutUser }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

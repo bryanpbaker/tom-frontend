@@ -9,13 +9,13 @@ const Header = (props) => {
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li className="menu-text logo">
                             <Link to="">
-                                <i className="fa fa-lightbulb-o"></i>
+                                <i className="fa fa-lightbulb-o" />
                                 <span className="tom">Tom</span>
                                 <span className="app">App</span>
                             </Link>
                         </li>
                         <a href="" className="show-for-small-only ">
-                            <i className="fa fa-bars menu-toggle" onClick={props.toggleMenu}></i>
+                            <i className="fa fa-bars menu-toggle" onClick={props.toggleMenu} />
                         </a>
                         <li className="hide-for-small-only">
                             <a href="">One</a>
@@ -29,7 +29,7 @@ const Header = (props) => {
                     </ul>
                 </div>
                 <div className="top-bar-right hide-for-small-only">
-                    <a href="" className="logout">logout</a>
+                    <a onClick={props.logout} className="logout">logout</a>
                 </div>
             </div>
         </div>

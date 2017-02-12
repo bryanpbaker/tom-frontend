@@ -1,4 +1,5 @@
 import fb from '../config/firebase.config';
+import { browserHistory } from 'react-router';
 
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 export const CURRENT_USER = 'CURRENT_USER';
@@ -25,7 +26,22 @@ export function getCurrentUser() {
           type: CURRENT_USER,
           payload: currentUser
         });
+      } else {
+        console.log('There is no user currently logged in.');
       }
     });
-  }
+  };
+}
+
+export function signoutUser() {
+  return () => {
+
+    if (confirm('Are you sure you want to log out?')) {
+      auth.signOut()
+        .then(() => {
+          console.log('User has been logged out.');
+          browserHistory.push('/login');
+        });
+    }
+  };
 }
