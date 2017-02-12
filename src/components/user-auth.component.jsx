@@ -18,6 +18,7 @@ class UserAuth extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.authenticateUser = this.authenticateUser.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,6 +37,10 @@ class UserAuth extends Component {
 
   authenticateUser(email, password) {
     this.props.authenticateUser(email, password);
+  }
+
+  handleFocus(event) {
+    event.target.select();
   }
 
   render() {
@@ -59,6 +64,7 @@ class UserAuth extends Component {
                   type="email"
                   value={this.state.userEmail}
                   onChange={this.handleEmailChange}
+                  onFocus={this.handleFocus}
                 />
               </label>
             </div>
@@ -68,6 +74,7 @@ class UserAuth extends Component {
                   type="password"
                   value={this.state.userPassword}
                   onChange={this.handlePasswordChange}
+                  onFocus={this.handleFocus}
                 />
               </label>
             </div>

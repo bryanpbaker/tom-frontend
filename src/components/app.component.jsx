@@ -25,6 +25,7 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ currentUser: nextProps.currentUser });
+    console.log(nextProps.currentUser);
   }
 
   // receive toggleMenu call from Header component

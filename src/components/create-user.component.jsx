@@ -10,15 +10,16 @@ class CreateUser extends Component {
     super(props);
 
     this.state = {
-      name: 'Enter your name',
-      email: 'Enter your email',
-      password: 'Enter a password'
+      displayName: '',
+      email: '',
+      password: ''
     };
 
-    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDisplayNameChange = this.handleDisplayNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,8 +28,8 @@ class CreateUser extends Component {
     }
   }
 
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
+  handleDisplayNameChange(event) {
+    this.setState({ displayName: event.target.value });
   }
 
   handleEmailChange(event) {
@@ -39,8 +40,12 @@ class CreateUser extends Component {
     this.setState({ password: event.target.value });
   }
 
-  handleFormSubmit(email, password) {
-    this.props.createUser(email, password);
+  handleFormSubmit(email, password, displayName) {
+    this.props.createUser(email, password, displayName);
+  }
+
+  handleFocus(event) {
+    event.target.select();
   }
 
   render() {
@@ -53,16 +58,18 @@ class CreateUser extends Component {
             className="medium-6 medium-offset-3 columns"
             onSubmit={(event) => {
                 event.preventDefault();
-                this.handleFormSubmit(this.state.email, this.state.password);
+                this.handleFormSubmit(this.state.email, this.state.password, this.state.displayName);
               }
             }
           >
             <div className="row">
-              <label htmlFor="name">Name:
+              <label htmlFor="displayName">Display Name:
                 <input
                   type="text"
-                  value={this.state.name}
-                  onChange={this.handleNameChange}
+                  value={this.state.displayName}
+                  placeholder="Enter a display name"
+                  onChange={this.handleDisplayNameChange}
+                  onFocus={this.handleFocus}
                 />
               </label>
             </div>
@@ -71,7 +78,9 @@ class CreateUser extends Component {
                 <input
                   type="email"
                   value={this.state.email}
+                  placeholder="Enter your email address"
                   onChange={this.handleEmailChange}
+                  onFocus={this.handleFocus}
                 />
               </label>
             </div>
@@ -80,7 +89,9 @@ class CreateUser extends Component {
                 <input
                   type="password"
                   value={this.state.password}
+                  placeholder="Enter your password"
                   onChange={this.handlePasswordChange}
+                  onFocus={this.handleFocus}
                 />
               </label>
             </div>

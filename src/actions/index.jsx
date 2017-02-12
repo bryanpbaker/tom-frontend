@@ -36,7 +36,6 @@ export function getCurrentUser() {
 
 export function signoutUser() {
   return () => {
-
     if (confirm('Are you sure you want to log out?')) {
       auth.signOut()
         .then(() => {
@@ -47,14 +46,17 @@ export function signoutUser() {
   };
 }
 
-export function createUser(email, password) {
+export function createUser(email, password, displayName) {
   return (dispatch) => {
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(user => {
+    auth.createUserWithEmailAndPassword(email, password).then(user => {
+      user.updateProfile({
+        displayName
+      }).then(() => {
         dispatch({
           type: CREATE_USER,
           payload: user
-        })
+        });
       });
+    });
   };
 }
