@@ -10,8 +10,8 @@ class UserAuth extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userEmail: 'user@email.com',
-      userPassword: 'password',
+      userEmail: '',
+      userPassword: '',
       error: ''
     };
 
@@ -63,6 +63,7 @@ class UserAuth extends Component {
                 <input
                   type="email"
                   value={this.state.userEmail}
+                  placeholder="Enter your email address"
                   onChange={this.handleEmailChange}
                   onFocus={this.handleFocus}
                 />
@@ -73,6 +74,7 @@ class UserAuth extends Component {
                 <input
                   type="password"
                   value={this.state.userPassword}
+                  placeholder="Enter your password"
                   onChange={this.handlePasswordChange}
                   onFocus={this.handleFocus}
                 />

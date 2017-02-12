@@ -1,0 +1,56 @@
+.user-widget {
+  padding-right: 15px;
+  padding-top: 15px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .fa-circle {
+    color: $accent;
+    display: inline-block;
+    padding-right: 5px;
+  }
+
+  .display-name {
+    color: white;
+    display: inline-block;
+  }
+
+  .fa-caret-down {
+    color: $black;
+    margin-left: 8px;
+    position: relative;
+    top: 1px;
+  }
+
+  .logout{
+      display: inline-block;
+      padding-right: 5px;
+  }
+
+  .user-widget-dropdown {
+    background: white;
+    box-shadow: 1px 2px 10px $black;
+    color: $black;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    padding-left: 15px;
+    position: absolute;
+    right: 20px;
+    top: 55px;
+    transition: all .2s ease;
+    width: 200px;
+
+    &.open {
+      height: 50px;
+      padding: 15px;
+      transition: all .2s ease;
+    }
+
+    a{
+      color: $black;
+    }
+  }
+}

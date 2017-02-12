@@ -13,67 +13,30 @@
         a{
             color: $light;
         }
+    }
 
-        .logo{
-            font-size: 2em;
-            font-weight: normal;
-            padding-left: 0;
+    .logo{
+        font-size: 2em;
+        font-weight: normal;
+        padding-left: 0;
 
-            @media(max-width: $screen-sm-max){
-                float: left;
-                width: 75%;
-            }
-
-            span.tom{
-                font-weight: bold;
-                margin-right: -2px;
-            }
-            span.app{
-                position: relative;
-                top: 4px;
-            }
-
-            &:hover{
-                i.fa{
-                    color: yellow;
-                }
-            }
-        }
-
-        .menu-toggle{
-            color: $light;
-            font-size: 1.75em;
+        @media(max-width: $screen-sm-max){
             float: left;
-            padding-right: 20px;
-            padding-top: 28px;
-            text-align: right;
-            width: 25%;
+            width: 75%;
         }
 
-        // carets in dropdown
-        .dropdown.menu>li.is-dropdown-submenu-parent>a:after {
-            border-color: $secondary transparent transparent;
-            margin-top: -1px;
+        span.tom{
+            font-weight: bold;
+            margin-right: -2px;
+        }
+        span.app{
+            position: relative;
         }
 
-        ul.dropdown{
-            background-color: transparent;
-
-            li:not(.logo){
-                padding-top: 10px;
+        &:hover{
+            i.fa{
+                color: yellow;
             }
-
-            .submenu{
-                background: $secondary;
-                left: 10px !important;
-                top: 85% !important;
-            }
-        }
-
-        .logout{
-            display: inline-block;
-            padding-right: 5px;
-            padding-top: 30px;
         }
     }
 }
