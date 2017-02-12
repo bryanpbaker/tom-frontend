@@ -1,10 +1,11 @@
 import fb from '../config/firebase.config';
 
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
+export const CURRENT_USER = 'CURRENT_USER';
+
+const auth = fb.auth();
 
 export function authenticateUser(email, password) {
-  const auth = fb.auth();
-
   return (dispatch) => {
     auth.signInWithEmailAndPassword(email, password)
     .then((currentUser) => {
@@ -14,4 +15,17 @@ export function authenticateUser(email, password) {
       });
     });
   };
+}
+
+export function getCurrentUser() {
+  return (dispatch) => {
+    auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        dispatch({
+          type: CURRENT_USER,
+          payload: currentUser
+        });
+      }
+    });
+  }
 }

@@ -6,17 +6,25 @@ import Header from './header.component';
 import Sidebar from './sidebar.component';
 import Dashboard from './dashboard.component';
 
+import { getCurrentUser } from '../actions/index';
+
 class App extends Component {
   constructor(props) {
     super(props);
 
+    this.props.getCurrentUser();
+
     // pass menuOpen state to Sidebar component
     this.state = {
         menuOpen: false,
-        currentUser: this.props.currentUser
+        currentUser: this.props.currentUser || {}
     };
 
     this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ currentUser: nextProps.currentUser });
   }
 
   // receive toggleMenu call from Header component
@@ -43,8 +51,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ authenticateUser }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getCurrentUser }, dispatch);
+}
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
