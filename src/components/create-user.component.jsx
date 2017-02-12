@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import fb from '../config/firebase.config';
+import { browserHistory, Link } from 'react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class CreateUser extends Component {
+import { createUser } from '../actions/index';
+
+class CreateUser extends Component {
   constructor(props) {
     super(props);
 
@@ -17,6 +21,12 @@ export default class CreateUser extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentUser.uid !== undefined) {
+      browserHistory.push('/');
+    }
+  }
+
   handleNameChange(event) {
     this.setState({ name: event.target.value });
   }
@@ -30,9 +40,7 @@ export default class CreateUser extends Component {
   }
 
   handleFormSubmit(email, password) {
-    const auth = fb.auth();
-
-    auth.createUserWithEmailAndPassword(email, password).then(res => console.log(res));
+    this.props.createUser(email, password);
   }
 
   render() {
@@ -86,8 +94,25 @@ export default class CreateUser extends Component {
             </div>
           </form>
         </div>
+        <div className="row">
+          <div className="medium-6 medium-offset-3 columns sign-up-link">
+            <Link to={'/login'}>Already have an account? Log in.</Link>
+          </div>
+        </div>
       </div>
 
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ createUser }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);

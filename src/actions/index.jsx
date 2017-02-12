@@ -1,8 +1,9 @@
-import fb from '../config/firebase.config';
 import { browserHistory } from 'react-router';
+import fb from '../config/firebase.config';
 
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 export const CURRENT_USER = 'CURRENT_USER';
+export const CREATE_USER = 'CREATE_USER';
 
 const auth = fb.auth();
 
@@ -43,5 +44,17 @@ export function signoutUser() {
           browserHistory.push('/login');
         });
     }
+  };
+}
+
+export function createUser(email, password) {
+  return (dispatch) => {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(user => {
+        dispatch({
+          type: CREATE_USER,
+          payload: user
+        })
+      });
   };
 }

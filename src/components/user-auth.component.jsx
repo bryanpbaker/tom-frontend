@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 import fb from '../config/firebase.config';
 import { authenticateUser } from '../actions/index';
@@ -75,6 +75,11 @@ class UserAuth extends Component {
               <button className="button">Sign In</button>
             </div>
           </form>
+        </div>
+        <div className="row">
+          <div className="medium-6 medium-offset-3 columns sign-up-link">
+            <Link to={'/sign-up'}>Don't have an account? Sign up for free!</Link>
+          </div>
         </div>
       </div>
     );

@@ -1,4 +1,4 @@
-import { AUTHENTICATE_USER, CURRENT_USER } from '../actions/index';
+import { AUTHENTICATE_USER, CURRENT_USER, CREATE_USER } from '../actions/index';
 
 export default function (state = null, action) {
   switch (action.type) {
@@ -7,6 +7,8 @@ export default function (state = null, action) {
   case AUTHENTICATE_USER:
     return action.payload;
   case CURRENT_USER:
+    return action.payload;
+  case CREATE_USER:
     return action.payload;
   }
 }
