@@ -28,6 +28,10 @@ class CreateUser extends Component {
     }
   }
 
+  handleFocus(event) {
+    event.target.select();
+  }
+
   handleDisplayNameChange(event) {
     this.setState({ displayName: event.target.value });
   }
@@ -41,11 +45,15 @@ class CreateUser extends Component {
   }
 
   handleFormSubmit(email, password, displayName) {
-    this.props.createUser(email, password, displayName);
-  }
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const passwordError = document.getElementById('passwordError');
 
-  handleFocus(event) {
-    event.target.select();
+    if (confirmPassword === password) {
+      this.props.createUser(email, password, displayName);
+    } else {
+      passwordError.classList.add('show');
+      passwordError.innerHTML = 'The passwords do not match! Please try again.';
+    }
   }
 
   render() {
@@ -89,11 +97,25 @@ class CreateUser extends Component {
                 <input
                   type="password"
                   value={this.state.password}
+                  id="password"
                   placeholder="Enter your password"
                   onChange={this.handlePasswordChange}
                   onFocus={this.handleFocus}
                 />
               </label>
+            </div>
+            <div className="row">
+              <label htmlFor="confirmPassword">Confirm Password:
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  placeholder="Confirm your password"
+                  onFocus={this.handleFocus}
+                />
+              </label>
+            </div>
+            <div className="row">
+              <div id="passwordError" className="error"></div>
             </div>
             <div className="row">
               <button
