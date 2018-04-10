@@ -1,6 +1,6 @@
 <h1>TOM Frontend</h1>
 
-<h2>Front end application for the TOM app. Built with React/Redux. Built to be separate from backend.</h2>
+<h2>Front end application for the TOM app. Built with React/Redux.
 
 <h2>Getting Started</h2>
 <ul>
